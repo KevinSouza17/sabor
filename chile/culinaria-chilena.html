@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabores do Chile — Culinária Tradicional</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #6B1E2A;
+    --red: #A8303E;
+    --terracotta: #C4633A;
+    --gold: #C89B4A;
+    --cream: #F5EDD9;
+    --parchment: #EDE0C4;
+    --dark: #1C1008;
+    --brown: #3D1F0D;
+    --text: #2A1505;
+    --muted: #7A5C3E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    font-family: 'Barlow', sans-serif;
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(28, 16, 8, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 155, 74, 0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-logo span {
+    color: var(--terracotta);
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+
+  .nav-tabs li button {
+    background: none;
+    border: none;
+    padding: 8px 24px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 237, 217, 0.55);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-tabs li button::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 50%; right: 50%;
+    height: 2px;
+    background: var(--gold);
+    transition: left 0.3s, right 0.3s;
+  }
+
+  .nav-tabs li button:hover,
+  .nav-tabs li button.active {
+    color: var(--gold);
+  }
+
+  .nav-tabs li button.active::after,
+  .nav-tabs li button:hover::after {
+    left: 16px; right: 16px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    display: none;
+    min-height: 100vh;
+    padding-top: 72px;
+  }
+  .section.active { display: block; }
+
+  /* ══════════════════════════════════════
+     INÍCIO
+  ══════════════════════════════════════ */
+  #inicio {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero {
+    position: relative;
+    height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(168,48,62,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(196,99,58,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(107,30,42,0.15) 0%, transparent 50%),
+      linear-gradient(160deg, #1C1008 0%, #2A1505 50%, #1C1008 100%);
+  }
+
+  /* Decorative lines */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(200,155,74,0.04) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(200,155,74,0.04) 80px);
+  }
+
+  /* Ornamental circle */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,155,74,0.08);
+    box-shadow: 0 0 0 60px rgba(200,155,74,0.025), 0 0 0 120px rgba(200,155,74,0.015);
+  }
+
+  .hero-kicker {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-title em {
+    display: block;
+    font-style: italic;
+    color: var(--terracotta);
+    font-size: 0.7em;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: rgba(245,237,217,0.6);
+    margin-top: 28px;
+    max-width: 480px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-cta {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+
+  .btn-primary {
+    padding: 14px 36px;
+    background: var(--terracotta);
+    color: var(--cream);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--red); transform: translateY(-2px); }
+
+  .btn-outline {
+    padding: 14px 36px;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid rgba(200,155,74,0.4);
+    cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--cream); transform: translateY(-2px); }
+
+  /* Floating food emojis */
+  .floaters {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .floater {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.06;
+    animation: floatAround linear infinite;
+  }
+
+  /* ── SOBRE O CHILE SECTION ── */
+  .about-strip {
+    background: var(--brown);
+    border-top: 1px solid rgba(200,155,74,0.15);
+    border-bottom: 1px solid rgba(200,155,74,0.15);
+    padding: 80px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    position: relative;
+  }
+
+  .about-strip::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(107,30,42,0.2) 0%, transparent 60%);
+  }
+
+  .about-item {
+    padding: 48px;
+    text-align: center;
+    border-right: 1px solid rgba(200,155,74,0.12);
+    position: relative;
+  }
+
+  .about-item:last-child { border-right: none; }
+
+  .about-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .about-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .about-item p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(245,237,217,0.65);
+  }
+
+  /* ── FEATURED DISHES ── */
+  .featured {
+    padding: 100px 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+
+  .section-heading .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,155,74,0.4));
+  }
+
+  .section-heading .line.rev {
+    background: linear-gradient(90deg, rgba(200,155,74,0.4), transparent);
+  }
+
+  .section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .dishes-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 3px;
+  }
+
+  .dish-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--brown);
+  }
+
+  .dish-card.large { grid-row: span 2; }
+
+  .dish-card-inner {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+  }
+
+  .dish-card.large .dish-card-inner { padding-bottom: 100%; }
+
+  .dish-card-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+    transition: transform 0.6s ease;
+  }
+
+  .dish-card:hover .dish-card-bg { transform: scale(1.08); }
+
+  .dish-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(28,16,8,0.92) 0%, rgba(28,16,8,0.3) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .dish-card:hover .dish-card-overlay { opacity: 1; }
+
+  .dish-card-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px;
+    transform: translateY(12px);
+    opacity: 0;
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  .dish-card:hover .dish-card-info { transform: translateY(0); opacity: 1; }
+
+  .dish-card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .dish-card-info p {
+    font-size: 0.82rem;
+    color: rgba(245,237,217,0.7);
+    line-height: 1.5;
+  }
+
+  .dish-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--terracotta);
+    color: var(--cream);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* ── BG PATTERNS FOR CARDS ── */
+  .card-bg-1 { background: linear-gradient(135deg, #3D1F0D 0%, #6B1E2A 100%); }
+  .card-bg-2 { background: linear-gradient(135deg, #2A1505 0%, #3D1F0D 100%); }
+  .card-bg-3 { background: linear-gradient(135deg, #1C1008 0%, #3D1F0D 100%); }
+  .card-bg-4 { background: linear-gradient(135deg, #3D1F0D 0%, #2A1505 100%); }
+  .card-bg-5 { background: linear-gradient(135deg, #6B1E2A 0%, #2A1505 100%); }
+
+  /* ══════════════════════════════════════
+     GENERIC CONTENT SECTIONS
+  ══════════════════════════════════════ */
+  .content-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 380px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 80px 64px;
+    overflow: hidden;
+  }
+
+  .content-hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .content-hero-title {
+    position: relative;
+    z-index: 2;
+  }
+
+  .content-hero-title .kicker {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .content-hero-title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 0.92;
+    color: var(--cream);
+  }
+
+  .content-hero-title h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .content-hero-desc {
+    position: relative;
+    z-index: 2;
+    max-width: 420px;
+    margin-left: auto;
+    align-self: flex-end;
+    padding-bottom: 16px;
+  }
+
+  .content-hero-desc p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(245,237,217,0.6);
+    line-height: 1.75;
+  }
+
+  /* ── CARDS GRID ── */
+  .cards-section {
+    padding: 80px 80px 120px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .food-card {
+    background: var(--brown);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s;
+  }
+
+  .food-card:hover { transform: translateY(-6px); z-index: 2; }
+
+  .food-card-emoji {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .food-card-emoji::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(200,155,74,0.08), transparent);
+  }
+
+  .food-card-body {
+    padding: 28px 28px 36px;
+    border-top: 2px solid var(--terracotta);
+  }
+
+  .food-card-body .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .badge-salgado { background: var(--burgundy); color: var(--cream); }
+  .badge-doce { background: #7A3E12; color: var(--cream); }
+  .badge-bebida { background: #1A3A4A; color: #A8D4E8; }
+
+  .food-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .food-card-body p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(245,237,217,0.6);
+  }
+
+  .food-card-footer {
+    padding: 16px 28px;
+    border-top: 1px solid rgba(200,155,74,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .food-card-footer .region {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .food-card-footer .stars {
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  /* ── DIVIDER ── */
+  .ornament-divider {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 16px;
+    opacity: 0.4;
+  }
+
+  /* ── QUOTE STRIP ── */
+  .quote-strip {
+    background: var(--burgundy);
+    padding: 64px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-strip::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: 20rem;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+  }
+
+  .quote-strip blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-style: italic;
+    color: var(--cream);
+    max-width: 720px;
+    margin: 0 auto 20px;
+    line-height: 1.5;
+    position: relative;
+  }
+
+  .quote-strip cite {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.75rem;
+    font-style: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,237,217,0.45);
+  }
+
+  /* ── REGION MAP STRIP ── */
+  .region-strip {
+    padding: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(200,155,74,0.08);
+  }
+
+  .region-item {
+    padding: 40px 32px;
+    background: var(--dark);
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .region-item:hover { background: var(--brown); }
+
+  .region-item .flag { font-size: 2.5rem; margin-bottom: 12px; }
+
+  .region-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .region-item p {
+    font-size: 0.8rem;
+    color: rgba(245,237,217,0.45);
+    line-height: 1.5;
+  }
+
+  /* ══════════════════════════════════════
+     BEBIDAS HERO BG
+  ══════════════════════════════════════ */
+  .bebidas-bg {
+    background:
+      radial-gradient(ellipse 70% 70% at 20% 50%, rgba(26,58,74,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 30%, rgba(107,30,42,0.5) 0%, transparent 50%),
+      linear-gradient(160deg, #0D1A22 0%, #1C1008 60%, #1A0D1A 100%);
+  }
+
+  /* ══════════════════════════════════════
+     DOCES HERO BG
+  ══════════════════════════════════════ */
+  .doces-bg {
+    background:
+      radial-gradient(ellipse 70% 70% at 70% 50%, rgba(122,62,18,0.7) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 10% 30%, rgba(200,155,74,0.3) 0%, transparent 50%),
+      linear-gradient(160deg, #1C1008 0%, #2A1505 60%, #1C1008 100%);
+  }
+
+  /* ══════════════════════════════════════
+     SALGADOS HERO BG
+  ══════════════════════════════════════ */
+  .salgados-bg {
+    background:
+      radial-gradient(ellipse 70% 70% at 30% 50%, rgba(107,30,42,0.7) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 70%, rgba(196,99,58,0.4) 0%, transparent 50%),
+      linear-gradient(160deg, #1C1008 0%, #2A1505 60%, #1C1008 100%);
+  }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  footer {
+    background: #0D0804;
+    border-top: 1px solid rgba(200,155,74,0.12);
+    padding: 64px 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+  }
+
+  footer .foot-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  footer .foot-brand span { color: var(--terracotta); }
+
+  footer .foot-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(245,237,217,0.4);
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+
+  footer h5 {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  footer ul {
+    list-style: none;
+  }
+
+  footer ul li {
+    margin-bottom: 10px;
+    font-size: 0.88rem;
+    color: rgba(245,237,217,0.45);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  footer ul li:hover { color: var(--cream); }
+
+  .foot-bottom {
+    grid-column: span 3;
+    border-top: 1px solid rgba(200,155,74,0.1);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .foot-bottom p {
+    font-size: 0.75rem;
+    color: rgba(245,237,217,0.25);
+  }
+
+  .chile-flag {
+    font-size: 1.5rem;
+  }
+
+  /* ══════════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════════ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes floatAround {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    25%  { transform: translateY(-30px) rotate(5deg); }
+    50%  { transform: translateY(0px) rotate(0deg); }
+    75%  { transform: translateY(20px) rotate(-5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  /* ── Staggered card appearance ── */
+  .food-card {
+    opacity: 0;
+    animation: fadeUp 0.6s forwards;
+  }
+
+  .food-card:nth-child(1) { animation-delay: 0.1s; }
+  .food-card:nth-child(2) { animation-delay: 0.2s; }
+  .food-card:nth-child(3) { animation-delay: 0.3s; }
+  .food-card:nth-child(4) { animation-delay: 0.4s; }
+  .food-card:nth-child(5) { animation-delay: 0.5s; }
+  .food-card:nth-child(6) { animation-delay: 0.6s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-logo { font-size: 1rem; }
+    .nav-tabs li button { padding: 8px 14px; font-size: 0.7rem; }
+    .about-strip { grid-template-columns: 1fr; }
+    .about-item { border-right: none; border-bottom: 1px solid rgba(200,155,74,0.12); }
+    .dishes-grid { grid-template-columns: 1fr 1fr; }
+    .dish-card.large { grid-row: span 1; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .cards-section, .region-strip, footer { padding: 48px 24px; }
+    .content-hero { padding: 0 24px 48px; flex-direction: column; justify-content: flex-end; gap: 24px; }
+    .region-strip { grid-template-columns: 1fr 1fr; }
+    footer { grid-template-columns: 1fr; }
+    .foot-bottom { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav>
+  <div class="nav-logo">Sabores <span>Chile</span></div>
+  <ul class="nav-tabs">
+    <li><button class="active" onclick="showTab('inicio', this)">Início</button></li>
+    <li><button onclick="showTab('bebidas', this)">Bebidas</button></li>
+    <li><button onclick="showTab('doces', this)">Doces</button></li>
+    <li><button onclick="showTab('salgados', this)">Salgados</button></li>
+  </ul>
+</nav>
+
+<!-- ════════════════════════════════════════
+     ABA: INÍCIO
+════════════════════════════════════════ -->
+<section id="inicio" class="section active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="floaters">
+      <span class="floater" style="top:15%;left:8%;animation-duration:9s;">🌶</span>
+      <span class="floater" style="top:70%;left:5%;animation-duration:11s;animation-delay:-3s;">🍷</span>
+      <span class="floater" style="top:25%;right:10%;animation-duration:8s;animation-delay:-1s;">🥩</span>
+      <span class="floater" style="top:75%;right:8%;animation-duration:13s;animation-delay:-6s;">🫔</span>
+      <span class="floater" style="top:50%;left:15%;animation-duration:10s;animation-delay:-4s;">🐟</span>
+      <span class="floater" style="top:40%;right:18%;animation-duration:7s;animation-delay:-2s;">🌿</span>
+    </div>
+    <p class="hero-kicker">Tradição · Sabor · Território</p>
+    <h1 class="hero-title">
+      Culinária<br>
+      <em>Chilena</em>
+    </h1>
+    <p class="hero-subtitle">Uma jornada pelos sabores que moldaram a identidade de um povo entre os Andes e o Oceano Pacífico.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showTab('salgados', document.querySelectorAll('.nav-tabs button')[3])">Explorar Pratos</button>
+      <button class="btn-outline" onclick="showTab('bebidas', document.querySelectorAll('.nav-tabs button')[1])">Ver Bebidas</button>
+    </div>
+  </div>
+
+  <!-- About strip -->
+  <div class="about-strip">
+    <div class="about-item">
+      <span class="about-icon">🌋</span>
+      <h3>Território Único</h3>
+      <p>Do deserto do Atacama à Patagônia gelada, cada região chilena oferece ingredientes únicos que moldam sua culinária diversa e singular.</p>
+    </div>
+    <div class="about-item">
+      <span class="about-icon">🌊</span>
+      <h3>Frutos do Mar</h3>
+      <p>Com mais de 6.400 km de costa, o Chile é um dos maiores produtores de frutos do mar do mundo, essenciais em sua gastronomia.</p>
+    </div>
+    <div class="about-item">
+      <span class="about-icon">🍇</span>
+      <h3>Vinicultura Premiada</h3>
+      <p>O Vale do Maipo e o Vale do Colchagua produzem alguns dos melhores vinhos do mundo, herança direta da colonização espanhola.</p>
+    </div>
+  </div>
+
+  <!-- Featured dishes mosaic -->
+  <div class="featured">
+    <div class="section-heading">
+      <div class="line"></div>
+      <h2>Pratos Imperdíveis</h2>
+      <div class="line rev"></div>
+    </div>
+    <div class="dishes-grid">
+      <div class="dish-card large card-bg-1">
+        <div class="dish-card-inner">
+          <div class="dish-card-bg">🥩</div>
+          <div class="dish-card-overlay"></div>
+          <div class="dish-card-info">
+            <span class="dish-tag">Salgado</span>
+            <h3>Asado Chileno</h3>
+            <p>O churrasco chileno é uma celebração em família, com cortes especiais e a tradição do carvão.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card card-bg-2">
+        <div class="dish-card-inner">
+          <div class="dish-card-bg">🍷</div>
+          <div class="dish-card-overlay"></div>
+          <div class="dish-card-info">
+            <span class="dish-tag">Bebida</span>
+            <h3>Vinho Tinto</h3>
+            <p>Carménère, a uva símbolo do Chile.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card card-bg-3">
+        <div class="dish-card-inner">
+          <div class="dish-card-bg">🥧</div>
+          <div class="dish-card-overlay"></div>
+          <div class="dish-card-info">
+            <span class="dish-tag">Doce</span>
+            <h3>Kuchen</h3>
+            <p>Herança alemã do sul do Chile.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card card-bg-4">
+        <div class="dish-card-inner">
+          <div class="dish-card-bg">🦀</div>
+          <div class="dish-card-overlay"></div>
+          <div class="dish-card-info">
+            <span class="dish-tag">Frutos do Mar</span>
+            <h3>Centolla</h3>
+            <p>Caranguejo gigante da Patagônia.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dish-card card-bg-5">
+        <div class="dish-card-inner">
+          <div class="dish-card-bg">🫔</div>
+          <div class="dish-card-overlay"></div>
+          <div class="dish-card-info">
+            <span class="dish-tag">Típico</span>
+            <h3>Empanada</h3>
+            <p>A alma da culinária chilena.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote-strip">
+    <blockquote>"A mesa chilena é o encontro do fogo andino com a brisa do Pacífico — cada prato conta a história de um povo resiliente e acolhedor."</blockquote>
+    <cite>— Tradição Gastronômica Chilena</cite>
+  </div>
+
+  <!-- Regions -->
+  <div class="region-strip">
+    <div class="region-item">
+      <div class="flag">🏜</div>
+      <h4>Norte — Atacama</h4>
+      <p>Quinoa, charqui e preprados andinos milenares</p>
+    </div>
+    <div class="region-item">
+      <div class="flag">🌾</div>
+      <h4>Centro — Santiago</h4>
+      <p>Cazuela, empanadas e vinhos do Vale Central</p>
+    </div>
+    <div class="region-item">
+      <div class="flag">🌲</div>
+      <h4>Sul — Araucanía</h4>
+      <p>Curanto, milcao e a herança mapuche</p>
+    </div>
+    <div class="region-item">
+      <div class="flag">🧊</div>
+      <h4>Extremo Sul — Patagônia</h4>
+      <p>Cordeiro patagônico e centolla fresca</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <div class="foot-brand">Sabores <span>Chile</span></div>
+      <p class="foot-tagline">Celebrando a riqueza<br>gastronômica do Chile</p>
+    </div>
+    <div>
+      <h5>Navegação</h5>
+      <ul>
+        <li onclick="showTab('inicio', document.querySelectorAll('.nav-tabs button')[0])">Início</li>
+        <li onclick="showTab('bebidas', document.querySelectorAll('.nav-tabs button')[1])">Bebidas</li>
+        <li onclick="showTab('doces', document.querySelectorAll('.nav-tabs button')[2])">Doces</li>
+        <li onclick="showTab('salgados', document.querySelectorAll('.nav-tabs button')[3])">Salgados</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Regiões</h5>
+      <ul>
+        <li>Norte do Chile</li>
+        <li>Vale Central</li>
+        <li>Região dos Lagos</li>
+        <li>Patagônia Chilena</li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2025 Sabores Chile — Culinária Tradicional Chilena</p>
+      <span class="chile-flag">🇨🇱</span>
+    </div>
+  </footer>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABA: BEBIDAS
+════════════════════════════════════════ -->
+<section id="bebidas" class="section">
+  <div class="content-hero">
+    <div class="content-hero-bg bebidas-bg"></div>
+    <div class="content-hero-title">
+      <span class="kicker">Cultura & Tradição</span>
+      <h1>Bebidas<br><em>Chilenas</em></h1>
+    </div>
+    <div class="content-hero-desc">
+      <p>Do pisco artesanal aos vinhos premiados e à chicha ancestral, o Chile tem uma cultura de bebidas tão diversa quanto sua geografia.</p>
+    </div>
+  </div>
+
+  <div class="ornament-divider">✦ ✦ ✦</div>
+
+  <div class="cards-section">
+    <div class="section-heading">
+      <div class="line"></div>
+      <h2>Bebidas Tradicionais</h2>
+      <div class="line rev"></div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A2A3A,#0D1A22)">🍷</div>
+        <div class="food-card-body">
+          <span class="badge badge-bebida">Ícone Nacional</span>
+          <h3>Vinho Carménère</h3>
+          <p>Considerada a uva símbolo do Chile, a Carménère foi trazida da França e quase desapareceu na Europa com a filoxera. No Chile, floresceu e deu origem a vinhos robustos com notas de ameixa, pimenta e tabaco.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Vale do Colchagua</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A1A0A,#2A2A0D)">🍸</div>
+        <div class="food-card-body">
+          <span class="badge badge-bebida">Coquetel Clássico</span>
+          <h3>Pisco Sour</h3>
+          <p>O coquetel nacional do Chile: pisco chileno (aguardente de uva), suco de limão, açúcar e gelo. Simples, refrescante e objeto de uma briga histórica com o Peru pela origem da bebida. O Dia Nacional do Pisco Sour é comemorado todo primeiro sábado de fevereiro.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Região de Atacama</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A0A0A,#2A1505)">🍺</div>
+        <div class="food-card-body">
+          <span class="badge badge-bebida">Fermentado</span>
+          <h3>Chicha</h3>
+          <p>Bebida fermentada de uva ou maçã com raízes indígenas milenares. A chicha de uva é típica das festas patrias em setembro, enquanto a chicha de maçã é mais comum na região da Araucanía. Levemente alcoólica e adocicada, é parte essencial das celebrações chilenas.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#0A1A0A,#0D2A0D)">🍵</div>
+        <div class="food-card-body">
+          <span class="badge badge-bebida">Quente</span>
+          <h3>Mate & Hierba Luisa</h3>
+          <p>Embora o mate seja mais associado à Argentina e Uruguai, é muito consumido no sul do Chile. A Hierba Luisa (erva-cidreira), porém, é o chá quente mais popular do país — presente em todo lar chileno como remédio caseiro e bebida cotidiana.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Sul do Chile</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A1005,#2A1A05)">🥃</div>
+        <div class="food-card-body">
+          <span class="badge badge-bebida">Destilado</span>
+          <h3>Pisco Chileno</h3>
+          <p>Destilado de uvas moscatel cultivadas no deserto do Atacama, com denominação de origem exclusiva. Produzido nas regiões de Atacama e Coquimbo, o pisco chileno tem graduação alcoólica controlada entre 30° e 50°, com sabor floral e frutado distintivo.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Coquimbo e Atacama</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#0A0A1A,#0D0D2A)">🫗</div>
+        <div class="food-card-body">
+          <span class="badge badge-bebida">Coquetel</span>
+          <h3>Cola de Mono</h3>
+          <p>Bebida natalina chilena por excelência: aguardente de cana, leite, café, canela, cravo e baunilha. Serve-se gelado durante as festas de fim de ano. O nome peculiar ("rabo de macaco") tem origem incerta, mas a bebida é unanimidade nas mesas de Natal chilenas.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="quote-strip">
+    <blockquote>"O vinho é a poesia da terra — e no Chile, essa poesia tem notas de Carménère e pôr do sol sobre a Cordilheira."</blockquote>
+    <cite>— Cultura Vínicola Chilena</cite>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABA: DOCES
+════════════════════════════════════════ -->
+<section id="doces" class="section">
+  <div class="content-hero">
+    <div class="content-hero-bg doces-bg"></div>
+    <div class="content-hero-title">
+      <span class="kicker">Confeitaria & Tradição</span>
+      <h1>Doces<br><em>Chilenos</em></h1>
+    </div>
+    <div class="content-hero-desc">
+      <p>Entre caramelos, bolos de influência europeia e sobremesas coloniais, a doçaria chilena é um reflexo da história do país.</p>
+    </div>
+  </div>
+
+  <div class="ornament-divider">✦ ✦ ✦</div>
+
+  <div class="cards-section">
+    <div class="section-heading">
+      <div class="line"></div>
+      <h2>Doces & Sobremesas</h2>
+      <div class="line rev"></div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#2A1505,#3D1F0D)">🍰</div>
+        <div class="food-card-body">
+          <span class="badge badge-doce">Colonial</span>
+          <h3>Alfajor</h3>
+          <p>Dois biscoitos amanteigados e delicados, recheados com manjar (doce de leite chileno) e cobertos com açúcar de confeiteiro ou coco ralado. O alfajor chileno é diferente do argentino — mais leve, mais aerado e com o manjar como protagonista absoluto.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#3D1F0D,#6B3A10)">🍮</div>
+        <div class="food-card-body">
+          <span class="badge badge-doce">Clássico</span>
+          <h3>Manjar Blanco</h3>
+          <p>O doce de leite chileno, chamado "manjar", é o recheio e cobertura de incontáveis preparações. Feito com leite e açúcar cozidos lentamente até caramelizar, tem textura aveludada e sabor profundo de caramelo. Está em alfajores, tortas, waffles e pão de cada dia.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A0A0A,#3D1010)">🍫</div>
+        <div class="food-card-body">
+          <span class="badge badge-doce">Popular</span>
+          <h3>Sopaipilla Pasada</h3>
+          <p>As sopaipillas são frituras de abóbora, mas quando "pasadas" (embebidas em chancaca — melado de cana com canela, laranja e cravo) se transformam em sobremesa. Comida de inverno por excelência, aquece o corpo e a alma nos dias de chuva em Santiago.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Santiago e Centro</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#2A1505,#4A2A08)">🥧</div>
+        <div class="food-card-body">
+          <span class="badge badge-doce">Alemão-Chileno</span>
+          <h3>Kuchen</h3>
+          <p>Herança direta dos imigrantes alemães que colonizaram o sul do Chile no século XIX. O kuchen é uma torta de frutas — amora, morango, ruibarbo — com massa amanteigada e recheio de creme. Na região de Los Lagos e Valdivia, é tradição absoluta com café.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Sul do Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A0A1A,#3D0D3D)">🍬</div>
+        <div class="food-card-body">
+          <span class="badge badge-doce">Típico</span>
+          <h3>Murta con Membrillo</h3>
+          <p>Combinação tradicional chilena entre murta (fruta nativa da Patagônia, também chamada murtilla) e marmelo. Servido como sobremesa ou doce de colher, tem sabor agridoce único que representa a fauna nativa do Chile austral. Reconhecido como Patrimônio Cultural Imaterial.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Patagônia</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#2A1A05,#4A3010)">🧁</div>
+        <div class="food-card-body">
+          <span class="badge badge-doce">Festa</span>
+          <h3>Torta de Mil Hojas</h3>
+          <p>A torta mais popular do Chile: camadas finíssimas de massa folhada intercaladas com manjar e cobertas com merengue ou creme. Presente em todos os aniversários e celebrações familiares, é o bolo nacional não oficial do Chile — reconhecível, amado e irresistível.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="quote-strip">
+    <blockquote>"O manjar chileno não é apenas um ingrediente — é uma memória de infância, uma herança passada de mão em mão com o calor de uma colher."</blockquote>
+    <cite>— Confeitaria Tradicional Chilena</cite>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ABA: SALGADOS
+════════════════════════════════════════ -->
+<section id="salgados" class="section">
+  <div class="content-hero">
+    <div class="content-hero-bg salgados-bg"></div>
+    <div class="content-hero-title">
+      <span class="kicker">Pratos Principais</span>
+      <h1>Salgados<br><em>Chilenos</em></h1>
+    </div>
+    <div class="content-hero-desc">
+      <p>Da empanada ao curanto, os pratos salgados chilenos carregam séculos de história indígena, colonial e imigrante em cada ingrediente.</p>
+    </div>
+  </div>
+
+  <div class="ornament-divider">✦ ✦ ✦</div>
+
+  <div class="cards-section">
+    <div class="section-heading">
+      <div class="line"></div>
+      <h2>Pratos Salgados Tradicionais</h2>
+      <div class="line rev"></div>
+    </div>
+    <div class="cards-grid">
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#3D1F0D,#6B1E2A)">🫔</div>
+        <div class="food-card-body">
+          <span class="badge badge-salgado">Ícone Nacional</span>
+          <h3>Empanada de Pino</h3>
+          <p>A empanada chilena é patrimônio gastronômico do país. Recheada com "pino" — carne bovina moída, cebola, azeitonas, ovos cozidos e passas — assada no forno até dourar. Consumida às centenas nas Festas Pátrias de 18 de setembro, é o prato mais chileno de todos.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A0A0A,#3D1F0D)">🍲</div>
+        <div class="food-card-body">
+          <span class="badge badge-salgado">Prato do Dia</span>
+          <h3>Cazuela</h3>
+          <p>Sopa-ensopado chilena com peças inteiras de carne (frango, vaca ou cordeiro), batatas, abóbora, milho verde, arroz e ervas. Considerada o prato do cotidiano chileno, a cazuela é servida nos almoços de domingo e representa o coração da cozinha caseira do país.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#0D1A22,#1C1008)">🦪</div>
+        <div class="food-card-body">
+          <span class="badge badge-salgado">Tradicional Mapuche</span>
+          <h3>Curanto</h3>
+          <p>Prato ancestral da Ilha de Chiloé: mariscos, carnes defumadas, batatas e legumes cozidos em pedras vulcânicas aquecidas, cobertos com folhas de nalca. O curanto "en hoyo" (na terra) é um evento social e ritual, podendo durar horas e alimentar comunidades inteiras.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Chiloé</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#2A1505,#3D1F0D)">🌽</div>
+        <div class="food-card-body">
+          <span class="badge badge-salgado">Verão</span>
+          <h3>Pastel de Choclo</h3>
+          <p>Torta salgada chilena com recheio de "pino" (como a empanada) coberta por creme espesso de milho moído e um toque de folhas de manjericão. Assada em tigelas de barro até o topo dourar. Uma colher de açúcar por cima antes de comer — tradição que divide os chilenos!</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Chile Central</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#1A0A0A,#2A1505)">🐟</div>
+        <div class="food-card-body">
+          <span class="badge badge-salgado">Costa</span>
+          <h3>Ceviche Chileno</h3>
+          <p>Diferente do peruano, o ceviche chileno usa peixe branco ou frutos do mar marinados em limão, cebola roxa, coentro, ají (pimenta) e tomate. Servido gelado como entrada, reflete os 6.400 km de costa do país. O congrio é o peixe mais tradicional nessa preparação.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Costa Pacífica</span>
+          <span class="stars">★★★★☆</span>
+        </div>
+      </div>
+
+      <div class="food-card">
+        <div class="food-card-emoji" style="background:linear-gradient(135deg,#3D1F0D,#5A2D0D)">🥩</div>
+        <div class="food-card-body">
+          <span class="badge badge-salgado">Churrasco</span>
+          <h3>Asado Chileno</h3>
+          <p>O "asado" chileno é mais que uma refeição — é um ritual de fim de semana. Cortes específicos como "lomo liso", "plateada" e "vacío" assados lentamente na brasa, acompanhados de pebre (molho de coentro, cebola e tomate) e pão amasado quentinho saído da grelha.</p>
+        </div>
+        <div class="food-card-footer">
+          <span class="region">Todo o Chile</span>
+          <span class="stars">★★★★★</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="quote-strip">
+    <blockquote>"A empanada chilena é mais do que comida: é reunião, é festejo, é o cheiro de setembro nas ruas de Santiago e no campo de todo o país."</blockquote>
+    <cite>— Gastronomia Tradicional Chilena</cite>
+  </div>
+</section>
+
+<script>
+  function showTab(tabId, btn) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    // Remove active from all buttons
+    document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+    // Show selected
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Re-trigger card animations
+    document.querySelectorAll('#' + tabId + ' .food-card').forEach((card, i) => {
+      card.style.animation = 'none';
+      card.offsetHeight; // reflow
+      card.style.animation = '';
+    });
+  }
+</script>
+</body>
+</html>
